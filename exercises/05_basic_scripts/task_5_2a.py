@@ -49,3 +49,23 @@ bin_ip = "00001010000000010000000111000011"
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+ipm = input('Введите адрес устройства в формате X.X.X.X/XX: ')
+ip = ((ipm.split('/'))[0]).split('.')
+m = int((ipm.split('/'))[1])
+mask = "1" * m + "0" * (32 - m)
+p = "{:08b}".format(int(ip[0])) + "{:08b}".format(int(ip[1])) + "{0:08b}".format(int(ip[2])) + "{0:08b}".format(int(ip[3]))
+newp = p[:m] + "0" * (32 - m)
+newip = [int(newp[0:8], 2), int(newp[8:16], 2), int(newp[16:24], 2), int(newp[24:], 2)]
+
+ip_template = '''
+Network:
+{0:<8}  {1:<8}  {2:<8}  {3:<8}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}
+
+Mask:
+/{4}
+{5:<8}  {6:<8}  {7:<8}  {8:<8}
+{5:08b}  {6:08b}  {7:08b}  {8:08b}
+'''
+d = [m, int(mask[0:8], 2), int(mask[8:16], 2), int(mask[16:24], 2), int(mask[24:], 2),]
+print(ip_template.format(int(newip[0]), int(newip[1]), int(newip[2]), int(newip[3]), int(d[0]), int(d[1]), int(d[2]), int(d[3]), int(d[4])))

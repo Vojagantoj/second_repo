@@ -73,7 +73,36 @@ trunk = {
     "0/5": ["add", "10", "21"],
     "0/7": ["only", "30"],
 }
+for key in trunk.keys():
+    print("interface FastEthernet" + key)
+    print(' ' + trunk_template[0])
+    print(' ' + trunk_template[1])
+    if trunk[key][0] == 'add':
+        i = 2
+        result = (' ' + trunk_template[2] + ' ' + 'add' + ' ' + trunk[key][1])
+        while i < len(trunk[key]):
+            result = (result + ',' + trunk[key][i])
+            i += 1
+        print(result)
+    elif trunk[key][0] == 'only':
+        i = 2
+        result = (' ' + trunk_template[2] + ' ' + trunk[key][1])
+        while i < len(trunk[key]):
+            result = (result + ',' + trunk[key][i])
+            i += 1
+        print(result)
+    elif trunk[key][0] == 'del':
+        i = 2
+        result = (' ' + trunk_template[2] + ' ' + 'remove' + ' ' + trunk[key][1])
+        while i < len(trunk[key]):
+            result = (result + ',' + trunk[key][i])
+            i += 1
+        print(result)
 
+#         if command.endswith("access vlan"):
+#             print(f" {command} {vlan}")
+#         else:
+#             print(f" {command}")
 # for intf, vlan in access.items():
 #     print("interface FastEthernet" + intf)
 #     for command in access_template:
@@ -81,4 +110,3 @@ trunk = {
 #             print(f" {command} {vlan}")
 #         else:
 #             print(f" {command}")
-

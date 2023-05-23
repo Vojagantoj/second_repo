@@ -12,3 +12,21 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+p = input ('Введите адрес в формате X.X.X.X: ')
+ip = p.split('.')
+i = 0
+ips = []
+while i < 4:
+    k = int(ip[i])
+    ips.append(int(ip[i]))
+    i += 1
+if 1 <= ips[0] <= 223:
+    print('unicast')
+elif 224 <= ips[0] <= 239:
+    print('multicast')
+elif ips[0] == ips[1] == ips[2] == ips[3] == 255:
+    print('local broadcast')
+elif ips[0] == ips[1] == ips[2] == ips[3] == 0:
+    print('unassigned')
+else:
+    print('unused')

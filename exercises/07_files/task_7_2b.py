@@ -15,5 +15,27 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+from sys import argv
+
+namefirst = argv[1]
+namelast = argv[2]
 
 ignore = ["duplex", "alias", "configuration"]
+result = []
+with open(namefirst) as f:
+    for line in f:
+        g = False
+        for ig in ignore:
+            if ig in line:
+                g = True
+                break
+        if line.startswith('!'):
+            pass
+        elif line.startswith(' ') and g == False:
+            result.append(line)
+        elif g == False:
+            result.append(line)
+results = ''.join(result)
+d = open(namelast, 'w')
+d.write(results)
+d.close()

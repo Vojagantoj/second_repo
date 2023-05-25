@@ -40,3 +40,15 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+result = []
+with open('CAM_table.txt') as f:
+    for line in f:
+        if line =='\n':
+            pass
+        elif ((line.split())[0]).isdigit():
+            line = line.split()
+            line[0] = int(line[0])
+            result.append(line)
+    result = sorted(result)
+    for k in result:
+        print('{:<9}{:20}{:9}'.format(k[0], k[1], k[3]))

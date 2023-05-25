@@ -14,3 +14,19 @@ Outbound Interface    FastEthernet0/0
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+atr = ['Prefix', 'AD/Metric', 'Next-Hop', 'Last update', 'Outbound Interface']
+
+with open('ospf.txt') as f:
+    for line in f:
+        line = (((line.replace('via', ' ')).replace(',', ' '))).split()
+        line = line[1:]
+        j = 0
+        for i in atr:
+            if j == 1:
+                line[j] = line[j].strip('[]')
+                print('{:22}{}'.format(i, line[j]))
+                j += 1
+            else:
+                print('{:22}{}'.format(i, line[j]))
+                j += 1
+
